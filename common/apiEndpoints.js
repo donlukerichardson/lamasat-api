@@ -1,8 +1,8 @@
 const Host = {
   ROOT: "http://localhost:3001",
   PREFIX: "/v1/api",
- /// FRONTEND: "http://localhost:3000",
-  FRONTEND: "https://www.compareprime.com",
+ FRONTEND: "http://localhost:3000",
+  // FRONTEND: "https://www.compareprime.com",
 }
 
 const ApiEndpoints = {
