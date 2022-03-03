@@ -134,7 +134,8 @@ const login = (email, password) => {
 
 
 // edit User
-const editUser = (id ,firstname , lastname ,email , password , image) => {
+const editUser = (id ,firstname , lastname ,email , password , rule) => {
+
     return new Promise((resolve, reject) => { // update user
        // check id
         UsersRquest.findOne({}, (errFind, user) => {
@@ -143,14 +144,15 @@ const editUser = (id ,firstname , lastname ,email , password , image) => {
             
             if (!user) {
                 reject("id not exist")
-  
+   
             } else {
 
                 //update
                 const newpassword = (password == "") ? user.password : user.hashPassword(password)
-        
-                UsersRquest.updateOne({}, {
-                      firstname , lastname ,email , password , image ,
+                const newrule = (rule == "") ? user.rule : rule
+
+                UsersRquest.updateOne({}, { 
+                      firstname , lastname ,email , password , rule : newrule , password : newpassword ,
                      updatedAt: Date.now()
                 }, (errUpdate, doc) => {
                     if (errUpdate){ 

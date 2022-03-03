@@ -62,10 +62,10 @@ const getMe = (req, res) => {
 
 // edit User
 const editUser = (req, res) => {
-    const {firstname , lastname ,email , password , image} = req.body ;
+    const {firstname , lastname ,email , password , rule} = req.body ;
     const {id} = req.params ;
 
-    UsersModel.editUser(id ,firstname , lastname ,email , password , image).then(result => {
+    UsersModel.editUser(id ,firstname , lastname ,email , password , rule).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})

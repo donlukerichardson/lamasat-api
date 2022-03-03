@@ -40,28 +40,7 @@ const getSingleImageView = (req, res) => {
 
 
 
-//get Single Image Download
-const getSingleImageDownload = (req, res) => {
-
-  const { id } = req.params
-
-  fileSev.getSingleImage(id).then(result => {
-    res.download(`public/images/${result.imageUrl}`, err => {
-      if (err) {
-        res.status(codes.badRequest).json({ err: true, msg: "The re was an error fetching your image" })
-      }
-    })
-
-  }).catch(err => res.status(codes.badRequest).json({ err: true, msg: err }))
-  
- 
-
-}
-
-
-
 module.exports = {
     createSingleImage ,
-    getSingleImageDownload ,
     getSingleImageView 
 }

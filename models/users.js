@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: false,
         trim: true,
-        default : "620d37c4230c0b66f9b191c3" ,
+        default : "621f791b45faa0b7dc83488c" ,
         ref : "file"
     },
     password: {
@@ -62,6 +62,6 @@ UserSchema.methods.comparePassword = function (password) {
 
 const UsersRquest = mongoose.model("user", UserSchema)
 
-
+ 
 
 module.exports =  UsersRquest
