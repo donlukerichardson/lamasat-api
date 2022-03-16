@@ -62,7 +62,7 @@ const getCount = ( filter = '{"firstname" : { "$ne": "xxxlxxx" }}' ) => {
 }
 
 // create
-const create = (firstname , lastname ,email , password , rule) => {
+const create = (firstname , lastname ,email , password , rule , quantity , loan , startAt , endAt , isAccountSuspended , isAccountActivated) => {
 
     return new Promise((resolve, reject) => { // check email
         UsersRquest.findOne({}, (errFind, user) => {
@@ -77,16 +77,15 @@ const create = (firstname , lastname ,email , password , rule) => {
 
             // inser a new user
             UsersRquest.create({
-                firstname , lastname ,email , rule ,
-                password: new UsersRquest().hashPassword(password),
-                
+                firstname , lastname ,email , password: new UsersRquest().hashPassword(password) , available : quantity ,
+                 rule , quantity , loan , startAt , endAt , isAccountSuspended , isAccountActivated , currentAt : startAt
             }, (errInsert, res) => {
                 if (errInsert){ 
                     reject(errInsert)
                 return
             }
 
-                resolve(res)
+                resolve(res.populate("image"))
             })
 
         }).where("email").equals(email)
@@ -132,9 +131,42 @@ const login = (email, password) => {
 
 
 
+// signup
+const signup = (firstname , lastname ,email , password) => {
+
+    return new Promise((resolve, reject) => { // check email
+        UsersRquest.findOne({}, (errFind, user) => {
+
+            if (errFind) 
+                reject(errFind)
+               
+            if (user) {
+                reject("the email already exists")
+                return
+            }
+
+            // inser a new user
+            UsersRquest.create({
+                firstname , lastname ,email ,
+                password: new UsersRquest().hashPassword(password),
+                
+            }, (errInsert, res) => {
+                if (errInsert){ 
+                    reject(errInsert)
+                return
+            }
+
+                resolve("created")
+            })
+
+        }).where("email").equals(email)
+    })
+}
+
+
 
 // edit User
-const editUser = (id ,firstname , lastname ,email , password , rule) => {
+const editUser = (id ,firstname , lastname ,email , password) => {
 
     return new Promise((resolve, reject) => { // update user
        // check id
@@ -149,10 +181,9 @@ const editUser = (id ,firstname , lastname ,email , password , rule) => {
 
                 //update
                 const newpassword = (password == "") ? user.password : user.hashPassword(password)
-                const newrule = (rule == "") ? user.rule : rule
 
                 UsersRquest.updateOne({}, { 
-                      firstname , lastname ,email , password , rule : newrule , password : newpassword ,
+                      firstname , lastname ,email , password , password : newpassword ,
                      updatedAt: Date.now()
                 }, (errUpdate, doc) => {
                     if (errUpdate){ 
@@ -179,6 +210,54 @@ const editUser = (id ,firstname , lastname ,email , password , rule) => {
 
     })
 }
+
+
+// update User
+const updateUser = (id , firstname , lastname ,email , password , rule , quantity , loan , startAt , endAt , isAccountSuspended , isAccountActivated ) => {
+
+    return new Promise((resolve, reject) => { // update user
+       // check id
+        UsersRquest.findOne({}, (errFind, user) => {
+            if (errFind) 
+                reject(errFind) 
+            
+            if (!user) {
+                reject("id not exist")
+   
+            } else {
+
+                //update
+                const newpassword = (password == "") ? user.password : user.hashPassword(password)
+
+                UsersRquest.updateOne({}, { 
+                     firstname , lastname ,email , password : newpassword , rule , quantity , loan , available : quantity ,
+                     startAt , endAt , isAccountSuspended , isAccountActivated  ,  currentAt : startAt ,
+                     updatedAt: Date.now()
+                }, (errUpdate, doc) => {
+                    if (errUpdate){ 
+                        reject(errUpdate)
+                        return
+                    }
+                    
+                    if (doc.modifiedCount > 0) {
+                        resolve({...user._doc , firstname , lastname ,email , password : newpassword , rule , quantity , loan ,
+                            startAt , endAt , isAccountSuspended , isAccountActivated , updatedAt: Date.now()})
+        
+        
+                    } else {
+                        reject("something went wrong")
+        
+                    }
+        
+                }).where("_id").equals(id)
+               
+            }
+
+        }).where("_id").equals(id).populate("image")
+
+    })
+}
+
 
 
 // edit Image
@@ -262,8 +341,10 @@ const forgotPasswordUser = (email) => {
 
 
 
-// Account Suspension
-const Suspension = (id , isAccountSuspended) => {
+
+
+// delete
+const Delete = (id) => {
     return new Promise((resolve, reject) => { // update user
        // check id
         UsersRquest.findOne({}, (errFind, user) => {
@@ -278,23 +359,18 @@ const Suspension = (id , isAccountSuspended) => {
                 //update
 
         
-                    UsersRquest.updateOne({}, {
-                        isAccountSuspended,
-                        updatedAt: Date.now()
-                    }, (errUpdate, doc) => {
-                        if (errUpdate) 
-                            reject(errUpdate)
-                        
-                        if (doc.modifiedCount > 0) {
-                            resolve("modified")
-            
-                        } else {
-                            reject("something went wrong")
-            
-                        }
-            
-                    }).where("_id").equals(id)
-                }
+                UsersRquest.deleteMany({} , (errUpdate, doc) => {
+                    if (errUpdate)
+                        reject(errUpdate)
+                    if (doc.deletedCount > 0) {
+                        resolve("deleted")
+
+                    } else {
+                        reject("something went wrong")
+                    }
+
+                }).where("_id").equals(id)
+            }
 
                
 
@@ -308,8 +384,7 @@ module.exports = {
      login ,
      create ,
      editUser , 
-     Suspension , 
      forgotPasswordUser  ,
-     editImage ,
-     getCount
+     editImage , updateUser ,
+     getCount , signup , Delete
 }

@@ -18,6 +18,33 @@ const UserSchema = mongoose.Schema({
         trim: true,
         unique : true
     },
+    startAt: {
+        type: Date,
+        required: false,
+    },
+    endAt: {
+        type: Date,
+        required: false,
+    },
+    currentAt: {
+        type: Date,
+        required: false,
+    },
+    quantity: {
+        type: Number,
+        required: false,
+        default : "0" ,
+    },
+    available: {
+        type: Number,
+        required: false,
+        default : "0" ,
+    },
+    loan: {
+        type: Number,
+        required: false,
+        default : "0" ,
+    }, 
     image: {
         type: mongoose.Schema.Types.ObjectId,
         required: false,
@@ -47,6 +74,10 @@ const UserSchema = mongoose.Schema({
     isAccountSuspended: {
         type: Boolean,
         default: false
+    } ,
+    isAccountActivated: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -64,4 +95,4 @@ const UsersRquest = mongoose.model("user", UserSchema)
 
  
 
-module.exports =  UsersRquest
+module.exports =  UsersRquest  

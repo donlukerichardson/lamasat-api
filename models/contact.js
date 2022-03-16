@@ -37,6 +37,22 @@ const WishlistSchema = mongoose.Schema({
         required : false , 
         default : false
     },
+    used: {
+        type: Boolean,
+        required : false , 
+        default : false
+    },
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId ,
+        required : false , 
+        ref : "user"
+    },
+    type: {
+        type: String,
+        required : false , 
+        enum : ["demo" , "prod"] ,
+        default : "prod"
+    },
     createdAt: {
         type: Date,
         default: Date.now()

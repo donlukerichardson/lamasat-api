@@ -1,8 +1,8 @@
 const Host = {
   ROOT: "http://localhost:3001",
   PREFIX: "/v1/api",
-  FRONTEND: "http://localhost:3000",
- //FRONTEND: "https://www.compareprime.com",
+  //FRONTEND: "http://localhost:3000",
+  FRONTEND: "https://www.compareprime.com",
 }
 
 const ApiEndpoints = {
@@ -12,14 +12,23 @@ const ApiEndpoints = {
     login: `/login`,
     create: `/create`,  
     me: `/me`,  
+    delete: `/delete/:id`,  
     edit: `/edit/:id`,
+    update: `/update/:id`,
     image: `/image/:id`,
-    suspension: `/suspension/:id`,
     forgotPassword: `/forgot-password`,
     count: `/count`,
+    signup: `/signup`,
 
   },
-
+    ChatEndpoints: {
+      route: `${Host.PREFIX}/chat`,
+      list: `/list`,
+      create: `/create`,  
+      delete: `/delete/:id`,  
+      reply: `/reply/:id`,
+      count: `/count`,
+  },
   FileEndpoints: {
     route: `${Host.PREFIX}/file`,
     getSingleImageView: `/get-single-image/:id/view`,
@@ -33,6 +42,7 @@ const ApiEndpoints = {
     delete: `/delete/:id`,
     count: `/count`,
     view: `/view/:id`,
+    update: `/update/:id`,
   },
  
 };

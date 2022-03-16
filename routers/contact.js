@@ -14,6 +14,9 @@ router.get(ApiEndpoints.contactEndpoints.count ,  passport.authenticate("adminOr
 // create
 router.post(ApiEndpoints.contactEndpoints.create  , ContactValidator ,  HandleValidatorError , ContactsControlles.createContact )
 
+// update
+router.put(ApiEndpoints.contactEndpoints.update , passport.authenticate("admin", {session: false}), idValidator , ContactsControlles.updateContact , handleError)
+
 // view
 router.put(ApiEndpoints.contactEndpoints.view , passport.authenticate("adminOrsuperAdmin", {session: false}), idValidator , ContactsControlles.viewContact , handleError)
 

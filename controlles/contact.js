@@ -49,6 +49,18 @@ const viewContact = (req, res) => {
     })
 }
 
+// update Contact
+const updateContact = (req, res) => {
+    const {id} = req.params ;
+   
+   
+    ContactsModel.updateContact(id).then(result => {
+        res.status(codes.ok).json({err: false, msg : result})
+    }).catch(result => {
+        res.status(codes.badRequest).json({err: true, msg : result})
+    })
+}
+
 // delete Contact
 const deleteContact = (req, res) => {
     const {id} = req.params ;
@@ -61,5 +73,5 @@ const deleteContact = (req, res) => {
 }
 
 module.exports = {
-   getAllContacts , deleteContact  , createContact  , getCount , viewContact
+   getAllContacts , deleteContact  , createContact  , getCount , viewContact ,  updateContact
 }
