@@ -18,9 +18,12 @@ if (app.get("env") == "development") {
 }
 
 const corsOptions = {
-   origin : `${Host.FRONTEND}`
+    origin: [ "compareprime.com" , "www.compareprime.com" ,"dashboard.compareprime.com" ,"milo-jbilu.xyz"]
 }  
  
+
+//origin : `${Host.FRONTEND}`
+
 //const  path  = require("path") 
 //const  fs  = require("fs")
 

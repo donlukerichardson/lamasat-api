@@ -16,7 +16,12 @@ app.use((req, res, next) => {
     res.status(404).json("Api not found") 
 })
 
-
-app.listen(process.env.PORT || 3001 , () => {
-    console.log("server start")
-})
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    app.listen(process.env.PORT || 3001 , () => {
+        console.log("server start")
+    })
+} else {
+    app.listen(2000 , () => {
+        console.log("server start")
+    })
+}
