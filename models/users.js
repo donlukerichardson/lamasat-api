@@ -21,14 +21,17 @@ const UserSchema = mongoose.Schema({
     startAt: {
         type: Date,
         required: false,
+        default : Date.now()
     },
     endAt: {
         type: Date,
         required: false,
+        default : Date.now()
     },
     currentAt: {
         type: Date,
         required: false,
+        default : Date.now()
     },
     quantity: {
         type: Number,

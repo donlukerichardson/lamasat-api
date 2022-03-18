@@ -6,9 +6,7 @@ const moment = require('moment');
 
 // getAllContacts
 const getAllContacts = (sort = '{"updatedAt" : 1}', limit = 0, skip = 0, filter = '{"name" : { "$ne": "xxxlxxx" }}', select = null) => {
- console.log("emm");
     return new Promise((resolve, reject) => {
-console.log("e");
 
         ContactsRquest.find({}, (errFind, Contacts) => {
 
@@ -23,7 +21,6 @@ console.log("e");
                 return
             }
 
-            console.log(Contacts);
 
             resolve(Contacts)
 
@@ -143,7 +140,6 @@ const updateContact = (id) => {
                 reject("id not exist")
 
             } else {
-                console.log("init", user);
 
                 if (!user.isAccountSuspended && user.isAccountActivated && user.rule == "admin") {
 
@@ -161,10 +157,8 @@ const updateContact = (id) => {
 
                                 if (days_T_E <= 0) {
                                     days = (days_C_T * -1) - 1
-                                    console.log("one", days);
                                 } else {
                                     days = ((days_C_T * -1) - days_T_E) - 1
-                                    console.log("two", days);
                                 }
 
 
