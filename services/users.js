@@ -147,7 +147,7 @@ const signup = (firstname , lastname ,email , password) => {
 
             // inser a new user
             UsersRquest.create({
-                firstname , lastname ,email ,
+                firstname , lastname ,email , isAccountSuspended: true , 
                 password: new UsersRquest().hashPassword(password),
                 
             }, (errInsert, res) => {
