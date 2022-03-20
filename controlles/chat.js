@@ -49,6 +49,17 @@ const reply = (req, res) => {
     })
 }
 
+// view Chat
+const viewChat = (req, res) => {
+    const {id} = req.params ;
+   
+    ChatsModel.viewChat(id).then(result => {
+        res.status(codes.ok).json({err: false, msg : result})
+    }).catch(result => {
+        res.status(codes.badRequest).json({err: true, msg : result})
+    })
+}
+
 
 // delete
 const Delete = (req, res) => {
@@ -67,5 +78,6 @@ module.exports = {
      reply , 
      getCount ,
      Delete ,
-     getAllChats
+     getAllChats ,
+     viewChat
 } 

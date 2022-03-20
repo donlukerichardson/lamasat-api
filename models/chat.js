@@ -21,6 +21,11 @@ const ChatSchema = mongoose.Schema({
         required: false,
         default : false
     },
+    viewed: {
+        type: Boolean,
+        required : false , 
+        default : false
+    },
     reply_message: {
         type: String,
         required: false,

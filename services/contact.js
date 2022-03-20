@@ -21,7 +21,6 @@ const getAllContacts = (sort = '{"updatedAt" : 1}', limit = 0, skip = 0, filter 
                 return
             }
 
-
             resolve(Contacts)
 
 

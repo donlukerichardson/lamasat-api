@@ -17,6 +17,9 @@ router.post(ApiEndpoints.ChatEndpoints.create, passport.authenticate("adminOrsup
 // reply user
 router.put(ApiEndpoints.ChatEndpoints.reply ,passport.authenticate("superAdmin", {session: false}) , replyChatValidator , idValidator, HandleValidatorError , ChatControlles.reply , handleError)
 
+// view
+router.put(ApiEndpoints.ChatEndpoints.view , passport.authenticate("admin", {session: false}), idValidator , ChatControlles.viewChat , handleError)
+
 // delete
 router.delete(ApiEndpoints.ChatEndpoints.delete ,passport.authenticate("superAdmin", {session: false}) , idValidator , ChatControlles.Delete , handleError)
 

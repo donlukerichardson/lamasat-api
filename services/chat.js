@@ -69,7 +69,7 @@ const create = (fullname ,email , user_id , message) => {
 
             // inser a new user
             ChatsRquest.create({
-                fullname ,email , user_id , message
+                fullname ,email , user_id , message ,
             }, (errInsert, res) => {
                 if (errInsert){ 
                     reject(errInsert)
@@ -130,6 +130,44 @@ const reply = (id ,reply_message) => {
 }
 
 
+// view Chat
+const viewChat = (id) => {
+
+    return new Promise((resolve, reject) => {
+        // check id
+        ChatsRquest.findOne({}, (errFind, cnt) => {
+            if (errFind)
+                reject(errFind)
+
+            if (!cnt) {
+                reject("id not exist")
+
+            } else {
+
+                //view
+                ChatsRquest.updateOne({}, { viewed: true }, (errUpdate, doc) => {
+                    if (errUpdate) {
+                        reject(errUpdate)
+                        return
+                    }
+
+                    if (doc.modifiedCount > 0) {
+                        resolve("modified")
+
+
+                    } else {
+                        reject("something went wrong")
+
+
+                    }
+
+                }).where("_id").equals(id)
+            }//else
+        }).where("_id").equals(id)
+
+    })
+}
+
 
 // delete
 const Delete = (id) => {
@@ -172,5 +210,6 @@ module.exports = {
     reply , 
     getCount ,
     Delete ,
-    getAllChats
+    getAllChats ,
+    viewChat
 }
