@@ -75,7 +75,7 @@ const createContact = (fullname, email, phone, franchise, npa, naissance) => {
     return new Promise((resolve, reject) => {
         //create
         ContactsRquest.create({
-            fullname, email, phone, franchise, npa, naissance
+            fullname, email, phone, franchise, npa, naissance 
         }, (errCreate, doc) => {
             if (errCreate) {
                 reject(errCreate)

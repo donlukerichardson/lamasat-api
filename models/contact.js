@@ -21,21 +21,24 @@ const WishlistSchema = mongoose.Schema({
         type: String,
         required: false,
         trim: true,
+        default : ".."
     },
     npa : {
         type: String,
-        required: true,
+        required: false,
         trim: true,
+        default : ".."
     },
     naissance: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
+        default : ".."
     },
     viewed: {
         type: Boolean,
         required : false , 
-        default : false
+        default : false ,
     },
     used: {
         type: Boolean,

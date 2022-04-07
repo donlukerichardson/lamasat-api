@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 //         console.log("server start dev")
 //     })
 // } else {
-    app.listen(2000 , () => {
+    app.listen(3001 , () => {
         console.log("server start prod")
     })
 // }

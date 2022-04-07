@@ -83,8 +83,8 @@ const ContactValidator = [
    check("email").notEmpty().withMessage("email field is required") ,
    check("email").isEmail().withMessage("email must be email") ,
    check("phone").notEmpty().withMessage("phone field is required") ,
-   check("npa").notEmpty().withMessage("postcode or home address field is required") ,
-   check("naissance").notEmpty().withMessage("year of birth field is required") ,
+   // check("npa").notEmpty().withMessage("postcode or home address field is required") ,
+   // check("naissance").notEmpty().withMessage("year of birth field is required") ,
 ]
 
 // const UpdateContactValidator = [
