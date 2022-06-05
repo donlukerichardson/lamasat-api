@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "c1209094-c600-4130-84a0-4e22c48c57f5",
+		"name": "lamasat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "contact",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{newAppHost}}{{newAppPrefex}}/contact/list?limit=0&skip=0&sort={\"updatedAt\" : 1}",
+							"host": [
+								"{{newAppHost}}{{newAppPrefex}}"
+							],
+							"path": [
+								"contact",
+								"list"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "{\"updatedAt\" : 1}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \"firstname\" : \"don.karimmansour@gmail.com\" ,\r\n        \"lastname\" : \"don.karimmansour@gmail.com\" ,\r\n        \"email\" : \"don.karimmansour@gmail.com\" ,\r\n        \"phone\" : \"+212620451752\" ,\r\n        \"subject\" : \"subject...\" ,\r\n        \"message\" : \"message...\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{newAppHost}}{{newAppPrefex}}/contact/create",
+							"host": [
+								"{{newAppHost}}{{newAppPrefex}}"
+							],
+							"path": [
+								"contact",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "appointment",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{newAppHost}}{{newAppPrefex}}/appointment/list?limit=0&skip=0&sort={\"updatedAt\" : 1}&filter={\"date\" : \"2022-06-06T00:00:00.000Z\"}",
+							"host": [
+								"{{newAppHost}}{{newAppPrefex}}"
+							],
+							"path": [
+								"appointment",
+								"list"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "{\"updatedAt\" : 1}"
+								},
+								{
+									"key": "filter",
+									"value": "{\"date\" : \"2022-06-06T00:00:00.000Z\"}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get times",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{newAppHost}}{{newAppPrefex}}/appointment/times?filter={\"date\" : \"2022-06-07T00:00:00.000Z\"}",
+							"host": [
+								"{{newAppHost}}{{newAppPrefex}}"
+							],
+							"path": [
+								"appointment",
+								"times"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "{\"date\" : \"2022-06-07T00:00:00.000Z\"}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \"firstname\" : \"don.karimmansour@gmail.com\" ,\r\n        \"lastname\" : \"don.karimmansour@gmail.com\" ,\r\n        \"email\" : \"don.karimmansour@gmail.com\" ,\r\n        \"phone\" : \"+212620451752\" ,\r\n        \"date\" : \"2022-06-07\" ,\r\n        \"time\" : \"10:00\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{newAppHost}}{{newAppPrefex}}/appointment/create",
+							"host": [
+								"{{newAppHost}}{{newAppPrefex}}"
+							],
+							"path": [
+								"appointment",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

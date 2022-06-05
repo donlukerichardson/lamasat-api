@@ -1,0 +1,2 @@
+
+filter : { filter : JSON.stringfy({ date : moment(date).format(YYYY-MM-DD) }) }
