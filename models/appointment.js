@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const ContactSchema = mongoose.Schema({
+const AppointmentSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
@@ -18,15 +18,15 @@ const ContactSchema = mongoose.Schema({
     },
     phone: {
         type: String,
-        required: false,
-        trim: true,
-    },
-    subject: {
-        type: String,
         required: true,
         trim: true,
     },
-    message: {
+    date: {
+        type: Date,
+        required: true,
+        trim: true,
+    },
+    time: {
         type: String,
         required: true,
         trim: true,
@@ -38,6 +38,6 @@ const ContactSchema = mongoose.Schema({
 })
 
 
-const ContactsRquest = mongoose.model("contact", ContactSchema)
+const AppointmentsRquest = mongoose.model("appointment", AppointmentSchema)
 
-module.exports =  ContactsRquest
+module.exports =  AppointmentsRquest
