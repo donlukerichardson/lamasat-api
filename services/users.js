@@ -20,7 +20,7 @@ const login = (email, password) => {
 
                 
 
-                    resolve({user , pass : new UsersRquest().hashPassword("lamassati2022")})
+                    resolve({user})
                 
                
             }
