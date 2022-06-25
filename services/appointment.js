@@ -14,7 +14,7 @@ const getAllAppointments = (sort = '{"createdAt" : 1}', limit = 0 , skip = 0 , f
             }
 
             if (Appointments.length <= 0) {
-                reject("there are no Appointments")
+                reject("il n'y a pas de rendez-vous ce jour-là")
                 return
             }
 

@@ -19,8 +19,8 @@ const getAllPacks = (req, res) => {
 
 // create Pack
 const createPack = (req, res) => {
-    const {name , options , price , oldprice} = req.body ;
-    PacksServ.createPack(name , options , price , oldprice).then(result => {
+    const {name , options , price , oldprice , isShow} = req.body ;
+    PacksServ.createPack(name , options , price , oldprice , isShow).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})
@@ -40,10 +40,10 @@ const getAllTimes = (req, res) => {
 
 // edit Packs
 const editPack = (req, res) => {
-    const { name , options , price , oldprice} = req.body ;
+    const { name , options , price , oldprice , isShow} = req.body ;
     const {id} = req.params ;
 
-    PacksServ.editPack(id, name , options , price , oldprice).then(result => {
+    PacksServ.editPack(id, name , options , price , oldprice , isShow).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})

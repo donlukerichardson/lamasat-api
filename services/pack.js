@@ -35,11 +35,11 @@ const getAllPacks = (sort = '{"createdAt" : 1}', limit = 0 , skip = 0 , filter =
 
 
 // create Pack
-const createPack = (name , options , price , oldprice) => {
+const createPack = (name , options , price , oldprice , isShow) => {
     return new Promise((resolve, reject) => {
         //create
         PacksRquest.create({
-            name , options , price , oldprice
+            name , options , price , oldprice , isShow
         }, (errCreate, doc) => {
             if (errCreate) {
                 reject(errCreate)
@@ -54,7 +54,7 @@ const createPack = (name , options , price , oldprice) => {
 
 
 // update Pack
-const editPack = (id, name , options , price , oldprice) => {
+const editPack = (id, name , options , price , oldprice , isShow) => {
 
 
     return new Promise((resolve, reject) => {
@@ -72,7 +72,7 @@ const editPack = (id, name , options , price , oldprice) => {
                 //update
 
                 PacksRquest.updateOne({}, {
-                    name , options , price , oldprice
+                    name , options , price , oldprice , isShow
                     , updatedAt: Date.now()
                 }, (errUpdate, doc) => {
                     if (errUpdate) {

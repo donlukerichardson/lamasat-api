@@ -18,6 +18,12 @@ const PackSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    isShow: {
+        type: String,
+        required: false,
+        default : false ,
+        enum : [true , false]
+    },
    
     createdAt: {
         type: Date,

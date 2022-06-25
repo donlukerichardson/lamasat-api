@@ -2,6 +2,19 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 
 const UserSchema = mongoose.Schema({
+    firtsname: { 
+        type: String,
+        required: true,
+        trim: true,
+    },
+
+    latsname: { 
+        type: String,
+        required: true,
+        trim: true,
+    },
+
+
     email: { 
         type: String,
         required: true,
@@ -31,6 +44,7 @@ UserSchema.methods.comparePassword = function (password) {
 }
 
 const UsersRquest = mongoose.model("user", UserSchema)
+
 
 
 

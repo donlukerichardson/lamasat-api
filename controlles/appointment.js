@@ -1,4 +1,4 @@
-const AppointmentsServ = require("../services/git")
+const AppointmentsServ = require("../services/appointment")
 const codes = require("../common/codes")
 
 

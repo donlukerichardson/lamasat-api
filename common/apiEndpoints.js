@@ -8,7 +8,8 @@ const Host = {
 const ApiEndpoints = {
   UserEndpoints: {
     route: `${Host.PREFIX}/user`,
-    login: `/login`
+    login: `/login` ,
+    me: `/me` ,
     
 },
   AppointmentEndpoints: {

@@ -7,6 +7,8 @@ const { address } = require("../services/users")
 // login 
 router.post(ApiEndpoints.UserEndpoints.login, LoginValidator ,  HandleValidatorError , UserControlles.login)
 
-
+// get me
+router.get(ApiEndpoints.UserEndpoints.me  ,  UserControlles.getMe) 
+ 
 
 module.exports = router
