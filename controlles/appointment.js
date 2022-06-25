@@ -1,9 +1,9 @@
-const AppointmentsServ = require("../services/appointment")
+const AppointmentsServ = require("../services/git")
 const codes = require("../common/codes")
 
 
 
-// get All Appointments 
+// get All Appointments  
 const getAllAppointments = (req, res) => { 
     const { sort , limit , skip , filter} = req.query ;
 

@@ -1,5 +1,5 @@
 const AppointmentsRquest = require("../models/appointment")
-
+ 
 
 
 // getAllAppointments
