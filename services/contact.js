@@ -18,7 +18,7 @@ const getAllContacts = (sort = '{"createdAt" : 1}', limit = 0 , skip = 0) => {
                 return
             }
 
-            resolve(Contacts)
+            resolve({ skip  , limit , count : Contacts.length , values : Contacts })
 
 
         })

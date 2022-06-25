@@ -1,13 +1,13 @@
-const AppointmentsServ = require("../services/appointment")
+const PacksServ = require("../services/pack")
 const codes = require("../common/codes")
 
 
 
-// get All Appointments 
-const getAllAppointments = (req, res) => { 
+// get All Packs 
+const getAllPacks = (req, res) => { 
     const { sort , limit , skip , filter} = req.query ;
 
-    AppointmentsServ.getAllAppointments( sort , limit , skip , filter).then(result => {
+    PacksServ.getAllPacks( sort , limit , skip , filter).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})
@@ -17,10 +17,10 @@ const getAllAppointments = (req, res) => {
 
 
 
-// create Appointment
-const createAppointment = (req, res) => {
-    const {firstname , lastname , email , phone , date , time} = req.body ;
-    AppointmentsServ.createAppointment(firstname , lastname , email , phone , date , time).then(result => {
+// create Pack
+const createPack = (req, res) => {
+    const {name , options , price , oldprice} = req.body ;
+    PacksServ.createPack(name , options , price , oldprice).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})
@@ -30,7 +30,7 @@ const createAppointment = (req, res) => {
 // get times
 const getAllTimes = (req, res) => {
     const {filter} = req.query ;
-    AppointmentsServ.getAllTimes(filter).then(result => {
+    PacksServ.getAllTimes(filter).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})
@@ -38,12 +38,12 @@ const getAllTimes = (req, res) => {
 }
 
 
-// edit Appointments
-const editAppointment = (req, res) => {
-    const { firstname , lastname , email , phone , date , time} = req.body ;
+// edit Packs
+const editPack = (req, res) => {
+    const { name , options , price , oldprice} = req.body ;
     const {id} = req.params ;
 
-    AppointmentsServ.editAppointment(id, firstname , lastname , email , phone , date , time).then(result => {
+    PacksServ.editPack(id, name , options , price , oldprice).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})
@@ -51,11 +51,11 @@ const editAppointment = (req, res) => {
 }
 
 
-// delete Appointments
-const deleteAppointment = (req, res) => {
+// delete Packs
+const deletePack = (req, res) => {
     const {id} = req.params ;
 
-    AppointmentsServ.deleteAppointment(id).then(result => {
+    PacksServ.deletePack(id).then(result => {
         res.status(codes.ok).json({err: false, msg : result})
     }).catch(result => {
         res.status(codes.badRequest).json({err: true, msg : result})
@@ -64,5 +64,5 @@ const deleteAppointment = (req, res) => {
 
 
 module.exports = {
-   getAllAppointments , createAppointment  , getAllTimes , deleteAppointment , editAppointment
+   getAllPacks , createPack  , getAllTimes , deletePack , editPack
 }

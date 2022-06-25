@@ -18,7 +18,7 @@ const getAllAppointments = (sort = '{"createdAt" : 1}', limit = 0 , skip = 0 , f
                 return
             }
 
-            resolve(Appointments)
+            resolve({ skip  , limit , count : Appointments.length , values : Appointments })
 
 
         })
@@ -45,10 +45,10 @@ const getAllTimes = ( filter = '{"firstname" : { "$ne": "xxxlxxx" }}') => {
                 return
             }
 
-            if (Appointments.length <= 0) {
-                reject("there are no Appointments")
-                return
-            }
+            // if (Appointments.length <= 0) {
+            //     reject("there are no Appointments")
+            //     return
+            // }
 
             const times = [
                 "09:00" ,
@@ -63,9 +63,7 @@ const getAllTimes = ( filter = '{"firstname" : { "$ne": "xxxlxxx" }}') => {
                 "18:00" ,
                 "19:00" ,
                 "20:00" ,
-                "21:00" ,
-                "22:00" ,
-                "23:00" ,
+                "21:00" 
             ].filter(t => !Appointments.includes(t))
 
             resolve(times)
@@ -101,6 +99,87 @@ const createAppointment = (firstname , lastname , email , phone , date , time) =
 }
 
 
+// update Appointment
+const editAppointment = (id, firstname , lastname , email , phone , date , time) => {
+
+
+    return new Promise((resolve, reject) => {
+
+        // check id
+        AppointmentsRquest.findOne({}, (errFind, caty) => {
+            if (errFind)
+                reject(errFind)
+
+            if (!caty) {
+                reject("id not exist")
+
+            } else {
+
+                //update
+
+                AppointmentsRquest.updateOne({}, {
+                      firstname , lastname , email , phone , date , time
+                    , updatedAt: Date.now()
+                }, (errUpdate, doc) => {
+                    if (errUpdate) {
+                        reject(errUpdate)
+                        return
+                    }
+
+                    if (doc.modifiedCount > 0) {
+                         resolve("modifed")
+
+                    } else {
+                        reject("something went wrong")
+                    }
+
+                }).where("_id").equals(id)
+
+            }//else
+        }).where("_id").equals(id)
+
+    })
+}
+
+
+
+// delete Appointment
+const deleteAppointment = (id) => {
+
+    return new Promise((resolve, reject) => {
+
+        // check id
+        AppointmentsRquest.findOne({}, (errFind, caty) => {
+            if (errFind)
+                reject(errFind)
+
+            if (!caty) {
+                reject("id not exist")
+
+            } else {
+                //delete
+                AppointmentsRquest.deleteOne({}
+                    , (errUpdate, doc) => {
+                        if (errUpdate) {
+                            reject(errUpdate)
+                            return
+                        }
+
+                        if (doc.deletedCount > 0) {
+                            resolve("deleted")
+
+                        } else {
+                            reject("something went wrong")
+                        }
+
+                    }).where("_id").equals(id)
+            }//else
+        }).where("_id").equals(id)
+
+    })
+}
+
+
 module.exports = {
-    getAllAppointments, createAppointment , getAllTimes
+    getAllAppointments, createAppointment , getAllTimes , deleteAppointment , editAppointment
 }

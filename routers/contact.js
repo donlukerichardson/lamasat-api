@@ -9,5 +9,9 @@ router.get(ApiEndpoints.contactEndpoints.list ,  ContactsControlles.getAllContac
 // create
 router.post(ApiEndpoints.contactEndpoints.create  , CreateContactValidator ,  HandleValidatorError , ContactsControlles.createContact )
 
+
+
+
+
  
-module.exports = router
+module.exports = router 
