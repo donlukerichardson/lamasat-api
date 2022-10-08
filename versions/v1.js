@@ -16,6 +16,6 @@ app.use((req, res, next) => {
     res.status(404).json("Api not found") 
 })
 
-app.listen(3000 , () => {
+app.listen(process.env.PORT || 3000 , () => {
    console.log("server start")
 })
